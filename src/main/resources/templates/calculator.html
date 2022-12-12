@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form class="form-horizontal" action="#" th:action="@{/suma/submit}"
+	th:object="${calc}" method="GET">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Calculadora</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="num1">Numero 2:</label>  
+  <div class="col-md-4">
+  <input id="num1" th:field="*{num1}" name="num1" type="text" placeholder="placeholder" class="form-control input-md" required="">
+  <span class="help-block">help</span>  
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="num2">Numero 2:</label>  
+  <div class="col-md-4">
+  <input id="num2" th:field="*{num2}" name="num2" type="text" placeholder="placeholder" class="form-control input-md" required="">
+  <span class="help-block">help</span>  
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
+  <div class="col-md-4">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">Suma</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+</body>
+</html>
