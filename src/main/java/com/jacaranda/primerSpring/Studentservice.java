@@ -64,18 +64,14 @@ public class Studentservice {
 				encontrado= true;
 				student = e;
 				student.setAge(age);
-				return student;
 			}
 			
 		}
-		return null;
+		return student;
+	
 		
 	}
 	
 	
-		
-	
-	
-
 
 }

@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jacaranda.primerSpring.Studentservice;
 import com.jacaranda.primerSpring.model.Student;
@@ -39,17 +40,39 @@ public class StudentController {
 	}
 	
 	
-	@PostMapping("/delStudent")
-	public String delStudent(Model model, @ModelAttribute("student") Student student) {
-
-		model.addAttribute("student", student);
+	@GetMapping("/delStudent")
+	public String delStudent(Model model, @RequestParam(name="name", required=false, defaultValue="") String name,
+			@RequestParam(name="surname", required=false, defaultValue="")String surname) {
+		
+		
+		Student estudiante = repositorio.getStudent(name, surname);
+		model.addAttribute("student", estudiante);
 		return "delStudent";
 	}
 	
-	@PostMapping("/delStudent/submit")
-	public String delSubmitStudent(@ModelAttribute("student") Student pepito) {
-		repositorio.delStudent(pepito);
+	@PostMapping("/delStudent/delSubmit")
+	public String listStudentsdelMethod ( @ModelAttribute("student") Student student) {
 		
+		repositorio.delStudent(student);
+			
+		return "redirect:/listStudents";
+	}
+	
+	@GetMapping("/editStudent")
+	public String editStudent(Model model, @RequestParam(name="name", required=false, defaultValue="")String name,
+			@RequestParam(name="surname", required=false, defaultValue="")String surname) {
+		
+		Student estudiante = repositorio.getStudent(name, surname);
+		model.addAttribute("student", estudiante);
+		
+		return "editStudent";
+	}
+	
+	@PostMapping("/editStudent/Submit")
+	public String listStudentseditMethod ( @ModelAttribute("student") Student student) {
+		
+		repositorio.updateStudent(student.getName(), student.getSurname(), student.getAge());
+			
 		return "redirect:/listStudents";
 	}
 	

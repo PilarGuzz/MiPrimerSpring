@@ -25,6 +25,7 @@
     					<th>APELLIDO</th>
     					<th>EDAD</th>
     					<th>BORRAR</th>
+    					<th>EDITAR</th>
     				</tr>
     			</thead>
     			<tbody>
@@ -32,13 +33,30 @@
     					<td th:text="${student.name}"></td>
     					<td th:text="${student.surname}"></td>
     					<td th:text="${student.age}"></td>
-    					<td>
-    						<form class="form-horizontal" action="#" 
-    						th:action="@{/delStudent/submit}" 
-    						th:object="${student}" method="post">
-    						<button type="button">Delete student</button>
-    						</form>
-    					</td>
+    				<td>
+    					
+						
+								<div class="form-group">
+							
+									<div class="col-md-4">
+										<a th:href="@{'/delStudent'(name=${student.name}, surname=${student.surname})}">
+										<button id="Enviar" name="Enviar" >Borrar</button>
+										</a>
+									</div>
+									
+								</div>
+								</td>
+								<td>
+								<div class="form-group">
+							
+								<div class="col-md-4">
+										<a th:href="@{'/editStudent'(name=${student.name}, surname=${student.surname})}">
+										<button id="Enviar" name="Enviar" >Editar</button>
+										</a>
+									</div>
+									</div>
+							
+						</td> 
     				</tr>
     			</tbody>
     		
