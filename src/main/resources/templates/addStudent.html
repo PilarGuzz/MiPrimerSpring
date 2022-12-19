@@ -13,7 +13,9 @@
 </head>
 <body>
 	<div>
-		<form class="form-horizontal" action="#" th:action="@{/addStudent/submit}" th:object="${estudiante}" method="post">
+		<form class="form-horizontal" action="#"
+			th:action="@{/addStudent/submit}" th:object="${estudiante}"
+			method="post">
 			<fieldset>
 
 				<!-- Form Name -->
@@ -23,8 +25,8 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="name">Name</label>
 					<div class="col-md-4">
-						<input id="name" name="name" type="text" th:field="*{name}" placeholder=""
-							class="form-control input-md">
+						<input id="name" name="name" type="text" th:field="*{name}"
+							placeholder="" class="form-control input-md">
 
 					</div>
 				</div>
@@ -33,26 +35,28 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="surname">Surname</label>
 					<div class="col-md-4">
-						<input id="surname" name="surname" th:field="*{surname}"  type="text" placeholder=""
-							class="form-control input-md">
+						<input id="surname" name="surname" th:field="*{surname}"
+							type="text" placeholder="" class="form-control input-md">
 
 					</div>
 				</div>
 
-				<!-- Age input-->
-				<div class="form-group">
-					<label class="col-md-4 control-label" for="age">Age</label>
+				<!-- Text input-->
+				<div class="form-group"
+					th:classapend="${#fields.hasErrors('age')} ? 'has-error'">
+					<label class="col-md-4 control-label" for="edad">Edad:</label>
 					<div class="col-md-4">
-						<input id="age" name="age" th:field="*{age}"  type="number"
-							placeholder="" class="form-control input-md">
-
+						<input id="edad" th:field="*{age}" name="edad" type="number"
+							placeholder="placeholder" class="form-control input-md" required>
+						 <span class="help-block"></span> <span
+							th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+							class="help-block" id="id-error">Errores</span>
 					</div>
 				</div>
-
 				<!-- Button (Double) -->
 				<div class="form-group">
-					<label class="col-md-4 control-label" for="button1id">Double
-						Button</label>
+					<label class="col-md-4 control-label" for="button1id">
+						</label>
 					<div class="col-md-8">
 						<button id="button1id" type="submit" name="button1id"
 							class="btn btn-success">Send</button>

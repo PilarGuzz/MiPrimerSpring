@@ -3,6 +3,8 @@ package com.jacaranda.primerSpring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +35,11 @@ public class StudentController {
 	}
 	
 	@PostMapping("/addStudent/submit")
-	public String addSubmitStudent(@ModelAttribute("estudiante") Student pepito) {
+	public String addSubmitStudent(@Validated @ModelAttribute("estudiante") Student pepito,
+			BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "addStudent";
+		}
 		repositorio.addStudents(pepito);
 		
 		return "redirect:/listStudents";
@@ -74,6 +80,17 @@ public class StudentController {
 		repositorio.updateStudent(student.getName(), student.getSurname(), student.getAge());
 			
 		return "redirect:/listStudents";
+	}
+	
+	@GetMapping("login")
+	public String login(Model model) {
+		return "login";
+	}
+	
+	@PostMapping("/login/submit")
+	public String login() {
+	
+		return "/listStudents";
 	}
 	
 
